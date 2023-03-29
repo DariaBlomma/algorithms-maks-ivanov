@@ -4,6 +4,8 @@
 const init = () => {
 	sum('12, -5');
 	fibonacchi(7);
+	manhattan('1 1', '11 21');
+	xeroxPath('105 4');
 }
 
 // 5.1
@@ -17,7 +19,7 @@ const sum  = (rawData) => {
 //5.2
 const fibonacchi = (number) => {
 	if (number === 0 || number === 1) {
-		console.log("-> number", number);
+		console.log("-> fibonacchi", number);
 		return number;
 	}
 	
@@ -30,7 +32,37 @@ const fibonacchi = (number) => {
 	}
 	const answer = fibArr[fibArr.length - 1]
 	console.log("-> fibArr", fibArr);
-	console.log("-> answer", answer);
+	console.log("-> fibonacchi answer", answer);
+	return answer;
+};
+
+//5.3
+const manhattan = (startCoords, endCoords) => {
+	const [x1, y1] = startCoords.split(' ');
+	const [x2, y2] = endCoords.split(' ');
+	
+	const xDiff = Math.abs(x1 - x2);
+	const yDiff = Math.abs(y1 - y2);
+	const answer = xDiff + yDiff;
+	console.log("-> manhattan answer", answer);
+	return answer;
+};
+
+//5.4
+const xeroxPath = (floors) => {
+	let answer;
+	const [currentFloorStr, xeroxFloorStr] = floors.split(' ');
+	const currentFloor = Number(currentFloorStr);
+	const xeroxFloor = Number(xeroxFloorStr);
+	if (xeroxFloor >= currentFloor) {
+		answer = xeroxFloor - currentFloor;
+		console.log("-> xeroxPath answer", answer);
+		return answer;
+	}
+	const multiplier = Math.round(currentFloor / xeroxFloor);
+	const nearestXeroxFloor = xeroxFloor * multiplier;
+	answer = currentFloor - nearestXeroxFloor;
+	console.log("-> xeroxPath answer", answer);
 	return answer;
 };
 
